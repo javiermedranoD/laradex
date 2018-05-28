@@ -13,8 +13,9 @@ class TrainerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('trainers.index');
+    {   
+        $trainers = Trainer::all();
+        return view('trainers.index', compact('trainers'));
     }
 
     /**
@@ -35,10 +36,18 @@ class TrainerController extends Controller
      */
     public function store(Request $request)
     {
+      if( $request->hasfile('avatar')){
+        $file = $request->file('avatar');
+        $name = time().$file->getClientOriginalName();
+        $file->move(public_path().'/images/', $name);
+        //return $name;
+      }
+
       $trainer = new Trainer();
       $trainer->name = $request->input('name');
+      $trainer->avatar = $name;
       $trainer->save();
-      return 'Saved';
+      return redirect()->route('trainers.index')->with('info', 'El producto fue registrado');
       //return $request->input('name');  
       // return $request->all();
     }
