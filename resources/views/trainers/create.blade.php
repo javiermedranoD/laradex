@@ -12,7 +12,11 @@
     <div class="form-group">
       <label for="avatar">Avatar</label>
       <input type="file" name="avatar">
-  </div>
+    </div>
+    <div class="form-group">
+      <label for="description">Descripción</label>
+      <input type="text" name="description" class="form-control">
+    </div>
     <button type="submit" class="btn btn-primary">Guardar</button>
 </form>
 

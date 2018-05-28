@@ -46,6 +46,7 @@ class TrainerController extends Controller
       $trainer = new Trainer();
       $trainer->name = $request->input('name');
       $trainer->avatar = $name;
+      $trainer->description = $request->input('description');
       $trainer->save();
       return redirect()->route('trainers.index')->with('info', 'El producto fue registrado');
       //return $request->input('name');  
@@ -58,9 +59,11 @@ class TrainerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    public function show(Trainer $trainer)
+    {   
+      //$trainer = Trainer::find($id);
+      
+      return view('trainers.show', compact('trainer'));
     }
 
     /**
