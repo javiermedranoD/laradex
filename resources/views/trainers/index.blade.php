@@ -3,7 +3,15 @@
 @section('title', 'Trainers Create')
 
 @section('content')
-<h2>Listado de trainers</h2><hr>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+  <h1 class="h2">Listado de trainers</h1>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <div class="btn-group mr-2">
+      <a href="/trainers/create" class="btn btn-primary">Registrar nuevo entrenador</a>
+    </div>
+  </div>
+</div>
+
 
 {{-- <div class="row"> --}}
   <div class="row">
@@ -14,7 +22,7 @@
             <div class="card-body">
               <h5 class="card-title">{{ $trainer->name }}</h5>
               <p class="card-text">{{ $trainer->description }}</p>
-              <a href="/trainers/{{$trainer->id}}" class="btn btn-primary">Ver más</a>
+              <a href="/trainers/{{$trainer->slug}}" class="btn btn-primary">Ver más</a>
             </div>
           </div>
         </div>

@@ -47,6 +47,7 @@ class TrainerController extends Controller
       $trainer->name = $request->input('name');
       $trainer->avatar = $name;
       $trainer->description = $request->input('description');
+      $trainer->slug = $request->input('slug');
       $trainer->save();
       return redirect()->route('trainers.index')->with('info', 'El producto fue registrado');
       //return $request->input('name');  
@@ -59,8 +60,10 @@ class TrainerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Trainer $trainer)
+    public function show($slug)
     {   
+      $trainer = Trainer::where('slug','=',$slug)->firstOrFail();
+      
       //$trainer = Trainer::find($id);
       
       return view('trainers.show', compact('trainer'));

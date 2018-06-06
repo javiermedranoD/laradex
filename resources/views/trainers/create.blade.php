@@ -17,6 +17,10 @@
       <label for="description">Descripción</label>
       <input type="text" name="description" class="form-control">
     </div>
+    <div class="form-group">
+      <label for="">Slug</label>
+      <input type="text" name="slug" class="form-control">
+    </div>
     <button type="submit" class="btn btn-primary">Guardar</button>
 </form>
 
