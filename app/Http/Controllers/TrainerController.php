@@ -75,9 +75,9 @@ class TrainerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Trainer $trainer)
     {
-        //
+        return view('trainers.edit',compact('trainer'));
     }
 
     /**
@@ -87,9 +87,20 @@ class TrainerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Trainer $trainer)
     {
-        //
+        $trainer->fill($request->except('avatar'));
+        if( $request->hasfile('avatar')){
+          $file = $request->file('avatar');
+          $name = time().$file->getClientOriginalName();
+          $trainer->avatar = $name;
+          $file->move(public_path().'/images/', $name);
+          //return $name;
+        }
+
+        $trainer->save();
+
+        return 'updated';
     }
 
     /**
